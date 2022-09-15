@@ -1,5 +1,6 @@
 import ArtistModal from '../models/artist.js';
 import SongsModal from "../models/songs.js";
+import fs from "fs";
 
 class ArtistController {
 
@@ -36,7 +37,8 @@ class ArtistController {
     static createArtist =  async (req, res) =>{
         try {
             const doc = new ArtistModal({
-                artist:req.body.artist
+                artist:req.body.artist,
+                image : req.file.filename
             });
             const result = await doc.save();
             res.status(201).send(result);
@@ -46,9 +48,26 @@ class ArtistController {
     }
 
     static updateArtistById = async (req, res) => {
-        try {
-            const result = await ArtistModal.findByIdAndUpdate(req.params.id, req.body)
-            res.send(result);
+        try{
+            let id = req.params.id;
+            let new_img = "";
+
+            if (req.file){
+                new_img = req.file.filename;
+                try{
+                    fs.unlinkSync("./public/artistImg/"+ req.body.old_image)
+                } catch (err){
+                    console.log(err)
+                }
+            } else {
+                new_img = req.body.old_image;
+            }
+         
+            await ArtistModal.findByIdAndUpdate(id, {
+                image : new_img,
+                artist : req.body.artist
+            });
+            res.send({success:true});    
         } catch (error) {
             console.log(error);
         }
@@ -56,8 +75,16 @@ class ArtistController {
 
     static deleteArtistById = async (req, res) => {
         try {
-            const result = await ArtistModal.findByIdAndDelete(req.params.id);
-            res.send({success:true});
+            ArtistModal.findByIdAndDelete(req.params.id, (err, result)=>{
+               if(result.image != ""){
+                   try{
+                       fs.unlinkSync('./public/artistImg/'+result.image)
+                   } catch(err){
+                       console.log(err)
+                   }
+               }
+               res.send({success:true});
+       });
         } catch (error) {
             console.log(error);
         }

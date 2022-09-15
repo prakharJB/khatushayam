@@ -2,7 +2,8 @@ import mongoose from "mongoose";
 
 //Defining Schema
 const artistSchema = new mongoose.Schema({
-   artist:{type:String} 
+   artist:{type:String}, 
+   image:{type:String} 
 })
 
 //Model

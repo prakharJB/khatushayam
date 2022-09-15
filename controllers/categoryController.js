@@ -56,7 +56,7 @@ class CategoryController {
             if (req.file){
                 new_img = req.file.filename;
                 try{
-                    fs.unlinkSync("./public/uploads/"+ req.body.old_image)
+                    fs.unlinkSync("./public/categoryImg/"+ req.body.old_image)
                 } catch (err){
                     console.log(err)
                 }
@@ -80,7 +80,7 @@ class CategoryController {
              CategoryModel.findByIdAndDelete(req.params.id, (err, result)=>{
                 if(result.image != ""){
                     try{
-                        fs.unlinkSync('./public/uploads/'+result.image)
+                        fs.unlinkSync('./public/categoryImg/'+result.image)
                     } catch(err){
                         console.log(err)
                     }
