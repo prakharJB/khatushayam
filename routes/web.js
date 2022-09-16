@@ -5,11 +5,14 @@ import CategoryController from '../controllers/categoryController.js';
 import ArtistController from '../controllers/artistController.js';
 import categoryImg from "../utils/categoryImg.js";
 import artistImg from "../utils/artistImg.js";
+import songImg from '../utils/songs.js';
 
 
 router.get('/songs', SongsController.getAllSongs);
 router.get('/songs/:id',SongsController.getSingleSongs);
-
+router.post('/songs',songImg ,SongsController.createSongs);
+router.put('/songs/:id',songImg ,SongsController.updateSongsById);
+router.delete('/songs/:id',SongsController.deleteSongsById);
 
 router.get('/category', CategoryController.getAllCate);
 router.get('/category/:id', CategoryController.getSingleCate);

@@ -3,7 +3,7 @@ import mongoose from "mongoose";
 //Defining Schema
 const songsSchema = new mongoose.Schema({
     artist:{type:String},
-    track:{type:Number},
+    track:{type:String},
     duration:{type:String},
     image:{type:String},
     song:{type:String},

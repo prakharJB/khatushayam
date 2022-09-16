@@ -11,6 +11,7 @@ connectDB(DATABASE_URL);
 
 //JSON
 app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
 
 //Load Routes
 app.use('/', web);
