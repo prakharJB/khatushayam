@@ -14,6 +14,8 @@ router.post('/songs',songImg ,SongsController.createSongs);
 router.put('/songs/:id',songImg ,SongsController.updateSongsById);
 router.delete('/songs/:id',SongsController.deleteSongsById);
 
+
+
 router.get('/category', CategoryController.getAllCate);
 router.get('/category/:id', CategoryController.getSingleCate);
 router.get('/category/songs/:id', CategoryController.getSongsbyCate);
