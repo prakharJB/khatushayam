@@ -21,6 +21,22 @@ class SongsController {
         }
     }
 
+    static getSongsBySearch = async (req ,res) =>{
+        try{
+           const result = await SongsModel.find({
+            "$or" : [
+                {track : { $regex: req.params.key}},
+                {artist : { $regex: req.params.key}},
+                {category : { $regex: req.params.key}}
+            ]
+           })
+           
+           res.send(result);
+        } catch (error){
+            console.log(error)
+        }
+    }
+
     static createSongs =  async (req, res) =>{
         //console.log(req.files)
         try {
