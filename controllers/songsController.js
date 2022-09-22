@@ -29,9 +29,13 @@ class SongsController {
                 {artist : { $regex: req.params.key}},
                 {category : { $regex: req.params.key}}
             ]
-           })
+        })
+            if(result == ""){
+                res.send("No result found!")
+            }else{
+                res.send(result);
+            }
            
-           res.send(result);
         } catch (error){
             console.log(error)
         }

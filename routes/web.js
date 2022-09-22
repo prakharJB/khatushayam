@@ -10,7 +10,7 @@ import songImg from '../utils/songs.js';
 
 router.get('/songs', SongsController.getAllSongs);
 router.get('/songs/:id',SongsController.getSingleSongs);
-router.get('/songs/search/:key',SongsController.getSongsBySearch);
+router.get('/search/:key',SongsController.getSongsBySearch);
 router.post('/songs',songImg ,SongsController.createSongs);
 router.put('/songs/:id',songImg ,SongsController.updateSongsById);
 router.delete('/songs/:id',SongsController.deleteSongsById);
