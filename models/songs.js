@@ -7,7 +7,7 @@ const songsSchema = new mongoose.Schema({
     duration:{type:String},
     image:{type:String},
     song:{type:String},
-    category:{type:String}
+    category:[{type:String}]
 })
 
 //Model
