@@ -10,6 +10,9 @@ const DATABASE_URL = process.env.DATABASE_URL || "mongodb+srv://jmbliss46:1998pr
 //Database Connection
 connectDB(DATABASE_URL);
 
+//FOR CORS Policy
+app.use(cors());
+
 //JSON
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
@@ -17,8 +20,6 @@ app.use(express.urlencoded({ extended: true }));
 //Load Routes
 app.use('/', web);
 
-//FOR CORS Policy
-app.use(cors());
 
 //connecting folder
 app.use(express.static('public'));
