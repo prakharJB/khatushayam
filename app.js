@@ -2,6 +2,7 @@ import express from "express";
 import connectDB from './db/connectDb.js';
 import web from './routes/web.js';
 import 'dotenv/config';
+import cors from 'cors';
 const app = express();
 const port = process.env.PORT ;
 const DATABASE_URL = process.env.DATABASE_URL || "mongodb+srv://jmbliss46:1998prakhar@cluster0.rymzopb.mongodb.net/test"
@@ -15,6 +16,9 @@ app.use(express.urlencoded({ extended: true }));
 
 //Load Routes
 app.use('/', web);
+
+//FOR CORS Policy
+app.use(cors());
 
 //connecting folder
 app.use(express.static('public'));
