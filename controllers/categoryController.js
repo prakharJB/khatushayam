@@ -13,6 +13,15 @@ class CategoryController {
         }
     }
 
+    static getSomeCate = async (req,res) => {
+        try {
+            const result = await CategoryModel.find().limit(5);
+            res.send(result);
+        } catch (error) {
+            console.log(error);
+        }
+    }
+
     static getSingleCate = async (req, res) => {
         try {
             const result = await CategoryModel.findById(req.params.id);
@@ -21,6 +30,7 @@ class CategoryController {
             console.log(error);
         }
     }
+    
 
 
     static getSongsbyCate = async (req, res) => {
