@@ -10,6 +10,7 @@ import songImg from '../utils/songs.js';
 
 
 router.get('/songs', SongsController.getAllSongs);
+router.get('/trending', SongsController.getTrendingSongs);
 router.get('/songs/:id',SongsController.getSingleSongs);
 router.get('/search/:key',SongsController.getSongsBySearch);
 router.post('/songs',songImg ,SongsController.createSongs);
@@ -20,7 +21,6 @@ router.delete('/songs/:id',SongsController.deleteSongsById);
 
 router.get('/category', CategoryController.getAllCate);
 router.get('/category/songs', CategoryController.getSomeCate);
-router.get('/category/trending', CategoryController.getTrenCate);
 router.get('/category/:id', CategoryController.getSingleCate);
 router.get('/category/songs/:id', CategoryController.getSongsbyCate);
 router.post('/category',categoryImg,CategoryController.createCategory);
