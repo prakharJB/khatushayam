@@ -21,6 +21,15 @@ class SongsController {
         }
     }
 
+    static getSingleTrendingSongs = async (req, res) => {
+        try {
+            const result = await SongsModel.findById(req.params.id);
+            res.send(result);
+        } catch (error) {
+            console.log(error);
+        }
+    }
+
     static getSingleSongs = async (req, res) => {
         try {
             const result = await SongsModel.findById(req.params.id);

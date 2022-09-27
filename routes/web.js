@@ -11,6 +11,7 @@ import songImg from '../utils/songs.js';
 
 router.get('/songs', SongsController.getAllSongs);
 router.get('/trending', SongsController.getTrendingSongs);
+router.get('/trending/:id', SongsController.getSingleTrendingSongs);
 router.get('/songs/:id',SongsController.getSingleSongs);
 router.get('/search/:key',SongsController.getSongsBySearch);
 router.post('/songs',songImg ,SongsController.createSongs);
