@@ -30,6 +30,7 @@ router.delete('/category/:id',CategoryController.deleteCategoryById);
 
 
 router.get('/artist', ArtistController.getAllArtist);
+router.get('/artist/songs', ArtistController.getFourArtist);
 router.get('/artist/:id', ArtistController.getSingleArtist);
 router.get('/artist/songs/:id', ArtistController.getSongsbyArtist);
 router.post('/artist',artistImg,ArtistController.createArtist);

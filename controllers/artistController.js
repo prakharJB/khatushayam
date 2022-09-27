@@ -13,6 +13,15 @@ class ArtistController {
         }
     }
 
+    static getFourArtist = async (req,res) => {
+        try {
+            const result = await ArtistModal.find().limit(4);
+            res.send(result);
+        } catch (error) {
+            console.log(error);
+        }
+    }
+
     static getSingleArtist = async (req, res) => {
         try {
             const result = await ArtistModal.findById(req.params.id);
