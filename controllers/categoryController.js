@@ -22,6 +22,16 @@ class CategoryController {
         }
     }
 
+    static getTrenCate = async (req,res) => {
+        try {
+            const result = await CategoryModel.find();
+            res.send(result);
+        } catch (error) {
+            console.log(error);
+        }
+    }
+
+
     static getSingleCate = async (req, res) => {
         try {
             const result = await CategoryModel.findById(req.params.id);
