@@ -6,7 +6,13 @@ class SongsController {
     static getAllSongs = async (req,res) => {
         try {
             const result = await SongsModel.find();
-            res.send(result);
+            var newresult =[];
+            newresult = result.map((x)=>{
+             x.image = "http://68.178.166.203:3000/songImg/"+x.image;
+             x.song = "http://68.178.166.203:3000/songImg/"+x.song;
+             return x
+            })
+            res.send(newresult);
         } catch (error) {
             console.log(error);
         }
@@ -15,7 +21,13 @@ class SongsController {
     static getTrendingSongs = async (req,res) => {
         try {
             const result = await SongsModel.find().limit(15);
-            res.send(result);
+            var newresult =[];
+            newresult = result.map((x)=>{
+             x.image = "http://68.178.166.203:3000/songImg/"+x.image;
+             x.song = "http://68.178.166.203:3000/songImg/"+x.song;
+             return x;
+            })
+            res.send(newresult);
         } catch (error) {
             console.log(error);
         }
@@ -24,6 +36,8 @@ class SongsController {
     static getSingleTrendingSongs = async (req, res) => {
         try {
             const result = await SongsModel.findById(req.params.id);
+            result.image = 'http://68.178.166.203:3000/songImg/' + result.image;
+            result.song = 'http://68.178.166.203:3000/songImg/' + result.song;
             res.send(result);
         } catch (error) {
             console.log(error);
@@ -33,6 +47,8 @@ class SongsController {
     static getSingleSongs = async (req, res) => {
         try {
             const result = await SongsModel.findById(req.params.id);
+            result.image = 'http://68.178.166.203:3000/songImg/' + result.image;
+            result.song = 'http://68.178.166.203:3000/songImg/' + result.song;
             res.send(result);
         } catch (error) {
             console.log(error);
@@ -51,7 +67,14 @@ class SongsController {
             if(result == ""){
                 res.send("No result found!")
             }else{
-                res.send(result);
+                var newresult =[];
+                    newresult = result.map((x)=>{
+                    x.image = "http://68.178.166.203:3000/songImg/"+x.image;
+                    x.song = "http://68.178.166.203:3000/songImg/"+x.song;
+                    return x
+            })
+                    res.send(newresult);
+                
             }
            
         } catch (error){

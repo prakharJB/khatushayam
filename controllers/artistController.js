@@ -7,7 +7,13 @@ class ArtistController {
     static getAllArtist = async (req,res) => {
         try {
             const result = await ArtistModal.find();
-            res.send(result);
+            // res.send(result);
+            var newresult =[];
+            newresult = result.map((x)=>{
+             x.image = "http://68.178.166.203:3000/artistImg/"+x.image;
+             return x;
+            })
+            res.send(newresult);
         } catch (error) {
             console.log(error);
         }
@@ -16,7 +22,12 @@ class ArtistController {
     static getFourArtist = async (req,res) => {
         try {
             const result = await ArtistModal.find().limit(4);
-            res.send(result);
+            var newresult =[];
+            newresult = result.map((x)=>{
+             x.image = "http://68.178.166.203:3000/artistImg/"+x.image;
+             return x;
+            })
+            res.send(newresult);
         } catch (error) {
             console.log(error);
         }
@@ -24,7 +35,8 @@ class ArtistController {
 
     static getSingleArtist = async (req, res) => {
         try {
-            const result = await ArtistModal.findById(req.params.id);
+            let result = await ArtistModal.findById(req.params.id);
+            result.image = 'http://68.178.166.203:3000/artistImg/' + result.image;
             res.send(result);
         } catch (error) {
             console.log(error);
@@ -37,7 +49,13 @@ class ArtistController {
             const data = await ArtistModal.findById(req.params.id);
              var artistName = data.artist
             const result = await SongsModal.find({artist : artistName});
-            res.send(result);
+            var newresult =[];
+            newresult = result.map((x)=>{
+             x.image = "http://68.178.166.203:3000/songImg/"+x.image;
+             x.song = "http://68.178.166.203:3000/songImg/"+x.song;
+             return x
+            })
+            res.send(newresult);
         } catch (error){
             console.log(error)
         }

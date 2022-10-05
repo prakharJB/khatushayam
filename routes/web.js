@@ -7,6 +7,7 @@ import PlaylistController from '../controllers/playlistController.js';
 import categoryImg from "../utils/categoryImg.js";
 import artistImg from "../utils/artistImg.js";
 import songImg from '../utils/songs.js';
+import playlistImg from '../utils/playlist.js'
 
 
 router.get('/songs', SongsController.getAllSongs);
@@ -41,6 +42,6 @@ router.delete('/artist/:id', ArtistController.deleteArtistById);
 router.get('/playlist', PlaylistController.getAllPlaylist);
 router.get('/playlist/:id', PlaylistController.getSinglePlaylist);
 router.get('/playlist/songs/:id', PlaylistController.getSongsbyPlaylist);
-
+router.post('/playlist',playlistImg,PlaylistController.createPlaylist);
 
 export default router;
