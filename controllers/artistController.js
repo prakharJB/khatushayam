@@ -10,7 +10,7 @@ class ArtistController {
             // res.send(result);
             var newresult =[];
             newresult = result.map((x)=>{
-             x.image = "http://68.178.166.203:3000/artistImg/"+x.image;
+             x.image = "https://khatu-wale-api.herokuapp.com/:3000/artistImg/"+x.image;
              return x;
             })
             res.send(newresult);
