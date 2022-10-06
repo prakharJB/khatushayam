@@ -10,7 +10,7 @@ class ArtistController {
             // res.send(result);
             var newresult =[];
             newresult = result.map((x)=>{
-             x.image = "https://khatu-wale-api.herokuapp.com/artistImg/"+x.image;
+             x.image = "http://localhost:3100/artistImg/"+x.image;
              return x;
             })
             res.send(newresult);
@@ -24,7 +24,7 @@ class ArtistController {
             const result = await ArtistModal.find().limit(4);
             var newresult =[];
             newresult = result.map((x)=>{
-             x.image = "http://68.178.166.203:3000/artistImg/"+x.image;
+             x.image = "http://localhost:3100/artistImg/"+x.image;
              return x;
             })
             res.send(newresult);
@@ -36,7 +36,7 @@ class ArtistController {
     static getSingleArtist = async (req, res) => {
         try {
             let result = await ArtistModal.findById(req.params.id);
-            result.image = 'http://68.178.166.203:3000/artistImg/' + result.image;
+            result.image = 'http://localhost:3100/artistImg/' + result.image;
             res.send(result);
         } catch (error) {
             console.log(error);
@@ -51,8 +51,8 @@ class ArtistController {
             const result = await SongsModal.find({artist : artistName});
             var newresult =[];
             newresult = result.map((x)=>{
-             x.image = "http://68.178.166.203:3000/songImg/"+x.image;
-             x.song = "http://68.178.166.203:3000/songImg/"+x.song;
+             x.image = "http://localhost:3100/songImg/"+x.image;
+             x.song = "http://localhost:3100/songImg/"+x.song;
              return x
             })
             res.send(newresult);

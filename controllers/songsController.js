@@ -8,8 +8,8 @@ class SongsController {
             const result = await SongsModel.find();
             var newresult =[];
             newresult = result.map((x)=>{
-             x.image = "http://68.178.166.203:3000/songImg/"+x.image;
-             x.song = "http://68.178.166.203:3000/songImg/"+x.song;
+             x.image = "http://localhost:3100/songImg/"+x.image;
+             x.song = "http://localhost:3100/songImg/"+x.song;
              return x
             })
             res.send(newresult);
@@ -23,8 +23,8 @@ class SongsController {
             const result = await SongsModel.find().limit(15);
             var newresult =[];
             newresult = result.map((x)=>{
-             x.image = "http://68.178.166.203:3000/songImg/"+x.image;
-             x.song = "http://68.178.166.203:3000/songImg/"+x.song;
+             x.image = "http://localhost:3100/songImg/"+x.image;
+             x.song = "http://localhost:3100/songImg/"+x.song;
              return x;
             })
             res.send(newresult);
@@ -36,8 +36,8 @@ class SongsController {
     static getSingleTrendingSongs = async (req, res) => {
         try {
             const result = await SongsModel.findById(req.params.id);
-            result.image = 'http://68.178.166.203:3000/songImg/' + result.image;
-            result.song = 'http://68.178.166.203:3000/songImg/' + result.song;
+            result.image = 'http://localhost:3100/songImg/' + result.image;
+            result.song = 'http://localhost:3100/songImg/' + result.song;
             res.send(result);
         } catch (error) {
             console.log(error);
@@ -47,8 +47,8 @@ class SongsController {
     static getSingleSongs = async (req, res) => {
         try {
             const result = await SongsModel.findById(req.params.id);
-            result.image = 'http://68.178.166.203:3000/songImg/' + result.image;
-            result.song = 'http://68.178.166.203:3000/songImg/' + result.song;
+            result.image = 'http://localhost:3100/songImg/' + result.image;
+            result.song = 'http://localhost:3100/songImg/' + result.song;
             res.send(result);
         } catch (error) {
             console.log(error);
@@ -69,8 +69,8 @@ class SongsController {
             }else{
                 var newresult =[];
                     newresult = result.map((x)=>{
-                    x.image = "http://68.178.166.203:3000/songImg/"+x.image;
-                    x.song = "http://68.178.166.203:3000/songImg/"+x.song;
+                    x.image = "http://localhost:3100/songImg/"+x.image;
+                    x.song = "http://localhost:3100/songImg/"+x.song;
                     return x
             })
                     res.send(newresult);

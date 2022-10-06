@@ -9,7 +9,7 @@ class CategoryController {
             const result = await CategoryModel.find();
             var newresult =[];
             newresult = result.map((x)=>{
-             x.image = "http://68.178.166.203:3000/categoryImg/"+x.image;
+             x.image = "http://localhost:3100/categoryImg/"+x.image;
              return x;
             })
             res.send(newresult);
@@ -23,7 +23,7 @@ class CategoryController {
             const result = await CategoryModel.find().limit(5);
             var newresult =[];
             newresult = result.map((x)=>{
-             x.image = "http://68.178.166.203:3000/categoryImg/"+x.image;
+             x.image = "http://localhost:3100/categoryImg/"+x.image;
              return x;
             })
             res.send(newresult);
@@ -36,7 +36,7 @@ class CategoryController {
     static getSingleCate = async (req, res) => {
         try {
             const result = await CategoryModel.findById(req.params.id);
-            result.image = 'http://68.178.166.203:3000/categoryImg/' + result.image;
+            result.image = 'http://localhost:3100/categoryImg/' + result.image;
             res.send(result);
         } catch (error) {
             console.log(error);
@@ -52,8 +52,8 @@ class CategoryController {
             const result = await SongsModel.find({category : cate});
             var newresult =[];
             newresult = result.map((x)=>{
-             x.image = "http://68.178.166.203:3000/songImg/"+x.image;
-             x.song = "http://68.178.166.203:3000/songImg/"+x.song;
+             x.image = "http://localhost:3100/songImg/"+x.image;
+             x.song = "http://localhost:3100/songImg/"+x.song;
              return x
             })
             res.send(newresult);

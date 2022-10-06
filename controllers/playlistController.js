@@ -8,7 +8,7 @@ class PlaylistController {
             const result = await PlaylistModal.find();
             var newresult =[];
             newresult = result.map((x)=>{
-             x.image = "http://68.178.166.203:3000/playlistImg/"+x.image;
+             x.image = "http://localhost:3100/playlistImg/"+x.image;
              return x;
             })
             res.send(newresult);
@@ -20,7 +20,7 @@ class PlaylistController {
     static getSinglePlaylist = async (req, res) => {
         try {
             const result = await PlaylistModal.findById(req.params.id);
-            result.image = 'http://68.178.166.203:3000/playlistImg/' + result.image;
+            result.image = 'http://localhost:3100/playlistImg/' + result.image;
             res.send(result);
         } catch (error) {
             console.log(error);
@@ -35,8 +35,8 @@ class PlaylistController {
             const result = await SongsModal.find({playlist : playlistName});
             var newresult =[];
             newresult = result.map((x)=>{
-             x.image = "http://68.178.166.203:3000/songImg/"+x.image;
-             x.song = "http://68.178.166.203:3000/songImg/"+x.song;
+             x.image = "http://localhost:3100/songImg/"+x.image;
+             x.song = "http://localhost:3100/songImg/"+x.song;
              return x
             })
             res.send(newresult);
