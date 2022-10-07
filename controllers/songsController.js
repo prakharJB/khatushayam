@@ -72,7 +72,7 @@ class SongsController {
                     x.image = "http://localhost:3100/songImg/"+x.image;
                     x.song = "http://localhost:3100/songImg/"+x.song;
                     return x
-            })
+                })
                     res.send(newresult);
                 
             }

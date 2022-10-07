@@ -1,11 +1,11 @@
-import PlaylistModal from '../models/playlist.js';
+import PlaylistModel from '../models/playlist.js';
 import SongsModal from "../models/songs.js";
 
 class PlaylistController {
 
     static getAllPlaylist = async (req,res) => {
         try {
-            const result = await PlaylistModal.find();
+            const result = await PlaylistModel.find();
             var newresult =[];
             newresult = result.map((x)=>{
              x.image = "http://localhost:3100/playlistImg/"+x.image;
@@ -19,7 +19,7 @@ class PlaylistController {
 
     static getSinglePlaylist = async (req, res) => {
         try {
-            const result = await PlaylistModal.findById(req.params.id);
+            const result = await PlaylistModel.findById(req.params.id);
             result.image = 'http://localhost:3100/playlistImg/' + result.image;
             res.send(result);
         } catch (error) {
@@ -30,7 +30,7 @@ class PlaylistController {
 
     static getSongsbyPlaylist = async (req, res) => {
         try{
-            const data = await PlaylistModal.findById(req.params.id);
+            const data = await PlaylistModel.findById(req.params.id);
              var playlistName = data.playlist
             const result = await SongsModal.find({playlist : playlistName});
             var newresult =[];
@@ -47,7 +47,7 @@ class PlaylistController {
 
     static createPlaylist =  async (req, res) =>{
         try {
-                const doc = new PlaylistModal({
+                const doc = new PlaylistModel({
                     image : req.file.filename,
                     title : req.body.title,
                     playlist: req.body.playlist

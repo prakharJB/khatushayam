@@ -8,7 +8,7 @@ const songsSchema = new mongoose.Schema({
     image:{type:String},
     song:{type:String},
     category:[{type:String}],
-    playlist:{type:String}
+    playlist:[{type:String}]
 })
 
 //Model
