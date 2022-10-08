@@ -1,6 +1,8 @@
 import ArtistModal from '../models/artist.js';
 import SongsModal from "../models/songs.js";
 import fs from "fs";
+const path = "http://localhost:3100/artistImg/"
+const songpath = "http://localhost:3100/songImg/"
 
 class ArtistController {
 
@@ -10,7 +12,7 @@ class ArtistController {
             // res.send(result);
             var newresult =[];
             newresult = result.map((x)=>{
-             x.image = "http://localhost:3100/artistImg/"+x.image;
+             x.image = path + x.image;
              return x;
             })
             res.send(newresult);
@@ -24,7 +26,7 @@ class ArtistController {
             const result = await ArtistModal.find().limit(4);
             var newresult =[];
             newresult = result.map((x)=>{
-             x.image = "http://localhost:3100/artistImg/"+x.image;
+             x.image = path +x.image;
              return x;
             })
             res.send(newresult);
@@ -36,7 +38,7 @@ class ArtistController {
     static getSingleArtist = async (req, res) => {
         try {
             let result = await ArtistModal.findById(req.params.id);
-            result.image = 'http://localhost:3100/artistImg/' + result.image;
+            result.image = path + result.image;
             res.send(result);
         } catch (error) {
             console.log(error);
@@ -51,8 +53,8 @@ class ArtistController {
             const result = await SongsModal.find({artist : artistName});
             var newresult =[];
             newresult = result.map((x)=>{
-             x.image = "http://localhost:3100/songImg/"+x.image;
-             x.song = "http://localhost:3100/songImg/"+x.song;
+             x.image = songpath+x.image;
+             x.song = songpath +x.song;
              return x
             })
             res.send(newresult);

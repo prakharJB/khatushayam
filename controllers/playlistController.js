@@ -1,5 +1,7 @@
 import PlaylistModel from '../models/playlist.js';
 import SongsModal from "../models/songs.js";
+const path = "http://localhost:3100/playlistImg/"
+const songpath = "http://localhost:3100/songImg/"
 
 class PlaylistController {
 
@@ -8,7 +10,7 @@ class PlaylistController {
             const result = await PlaylistModel.find();
             var newresult =[];
             newresult = result.map((x)=>{
-             x.image = "http://localhost:3100/playlistImg/"+x.image;
+             x.image = path +x.image;
              return x;
             })
             res.send(newresult);
@@ -20,7 +22,7 @@ class PlaylistController {
     static getSinglePlaylist = async (req, res) => {
         try {
             const result = await PlaylistModel.findById(req.params.id);
-            result.image = 'http://localhost:3100/playlistImg/' + result.image;
+            result.image = path + result.image;
             res.send(result);
         } catch (error) {
             console.log(error);
@@ -35,8 +37,8 @@ class PlaylistController {
             const result = await SongsModal.find({playlist : playlistName});
             var newresult =[];
             newresult = result.map((x)=>{
-             x.image = "http://localhost:3100/songImg/"+x.image;
-             x.song = "http://localhost:3100/songImg/"+x.song;
+             x.image = songpath +x.image;
+             x.song = songpath +x.song;
              return x
             })
             res.send(newresult);

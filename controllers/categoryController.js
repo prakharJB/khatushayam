@@ -1,6 +1,8 @@
 import CategoryModel from "../models/category.js";
 import SongsModel from "../models/songs.js";
 import fs from "fs";
+const path = "http://localhost:3100/categoryImg/"
+const songpath = "http://localhost:3100/songImg/"
 
 class CategoryController {
 
@@ -9,7 +11,7 @@ class CategoryController {
             const result = await CategoryModel.find();
             var newresult =[];
             newresult = result.map((x)=>{
-             x.image = "http://localhost:3100/categoryImg/"+x.image;
+             x.image = path +x.image;
              return x;
             })
             res.send(newresult);
@@ -23,7 +25,7 @@ class CategoryController {
             const result = await CategoryModel.find().limit(5);
             var newresult =[];
             newresult = result.map((x)=>{
-             x.image = "http://localhost:3100/categoryImg/"+x.image;
+             x.image = path +x.image;
              return x;
             })
             res.send(newresult);
@@ -36,7 +38,7 @@ class CategoryController {
     static getSingleCate = async (req, res) => {
         try {
             const result = await CategoryModel.findById(req.params.id);
-            result.image = 'http://localhost:3100/categoryImg/' + result.image;
+            result.image = path + result.image;
             res.send(result);
         } catch (error) {
             console.log(error);
@@ -52,8 +54,8 @@ class CategoryController {
             const result = await SongsModel.find({category : cate});
             var newresult =[];
             newresult = result.map((x)=>{
-             x.image = "http://localhost:3100/songImg/"+x.image;
-             x.song = "http://localhost:3100/songImg/"+x.song;
+             x.image = songpath +x.image;
+             x.song = songpath +x.song;
              return x
             })
             res.send(newresult);
