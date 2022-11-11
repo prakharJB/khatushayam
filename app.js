@@ -15,7 +15,7 @@ app.use(cors());
 
 //JSON
 app.use(express.json());
-app.use(express.urlencoded({ extended: false }));
+app.use(express.urlencoded({ extended: true }));
 
 //Load Routes
 app.use('/', web);

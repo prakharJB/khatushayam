@@ -20,12 +20,12 @@ class AdminController {
                     var token = jwt.sign(result[0].toJSON() , "khatushyam");
                     res.status(200).send({success : true ,token:token})
                 }else{
-                    res.status(401).send({Message :"Password is incorrect"});
+                    res.status(401).send({type :"This Password is Incorrect !"});
     
                 }
             }
             else{
-                res.status(401).send({Message : "Username/Email Not Found"});
+                res.status(401).send({type : "This Username and Password is Incorrect !"});
             }}
             catch (error){
                      console.log(error);
