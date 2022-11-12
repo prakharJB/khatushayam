@@ -88,6 +88,9 @@ class SongsController {
     static createSongs =  async (req, res) =>{
         //console.log(req.files)
         try {
+            console.log(req.files)
+            console.log(req.body)
+            
                 const doc = new SongsModel({
                     image : req.files.files[0].filename,
                     song : req.files.audio[0].filename,

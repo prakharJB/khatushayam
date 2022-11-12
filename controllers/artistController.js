@@ -65,8 +65,10 @@ class ArtistController {
 
     static createArtist =  async (req, res) =>{
         try {
+
+            var data = JSON.parse(req.body.data)
             const doc = new ArtistModal({
-                artist:req.body.artist,
+                artist: data.artist,
                 image : req.file.filename
             });
             const result = await doc.save();
@@ -80,21 +82,24 @@ class ArtistController {
         try{
             let id = req.params.id;
             let new_img = "";
+            var data = JSON.parse(req.body.data)
+            var img = data.image
+            var arr = img.split("artistImg");
 
             if (req.file){
                 new_img = req.file.filename;
                 try{
-                    fs.unlinkSync("./public/artistImg/"+ req.body.old_image)
+                    fs.unlinkSync("./public/artistImg/"+arr[1])
                 } catch (err){
                     console.log(err)
                 }
             } else {
-                new_img = req.body.old_image;
+                new_img = req.body.image;
             }
          
             await ArtistModal.findByIdAndUpdate(id, {
                 image : new_img,
-                artist : req.body.artist
+                artist : data.artist
             });
             res.send({success:true});    
         } catch (error) {

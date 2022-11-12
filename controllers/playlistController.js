@@ -49,10 +49,12 @@ class PlaylistController {
 
     static createPlaylist =  async (req, res) =>{
         try {
+
+            var data = JSON.parse(req.body.data)
                 const doc = new PlaylistModel({
                     image : req.file.filename,
-                    title : req.body.title,
-                    playlist: req.body.playlist
+                    title : data.title,
+                    playlist: data.playlist
                 });
                 const result = await doc.save();
                 res.status(201).send(result);
@@ -65,22 +67,25 @@ class PlaylistController {
         try{
             let id = req.params.id;
             let new_img = "";
+            var data = JSON.parse(req.body.data)
+            var img = data.image
+            var arr = img.split("playlistImg");
 
             if (req.file){
                 new_img = req.file.filename;
                 try{
-                    fs.unlinkSync("./public/playlistImg/"+ req.body.old_image)
+                    fs.unlinkSync("./public/playlistImg/"+  arr[1])
                 } catch (err){
                     console.log(err)
                 }
             } else {
-                new_img = req.body.old_image;
+                new_img = req.body.image;
             }
          
             await PlaylistModel.findByIdAndUpdate(id, {
                 image : new_img,
-                title : req.body.title,
-                playlist : req.body.playlist 
+                title : data.title,
+                playlist : data.playlist 
             });
             res.send({success:true});    
         }catch (error) {
