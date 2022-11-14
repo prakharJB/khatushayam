@@ -8,7 +8,7 @@ class SongsController {
 
     static getAllSongs = async (req,res) => {
         try {
-            const result = await SongsModel.find();
+            const result = await SongsModel.find().sort({track : -1});
             var newresult =[];
             newresult = result.map((x)=>{
              x.image = path + x.image;
@@ -23,7 +23,7 @@ class SongsController {
 
     static getTrendingSongs = async (req,res) => {
         try {
-            const result = await SongsModel.find().limit(15);
+            const result = await SongsModel.find().sort({track : -1}).limit(15);
             var newresult =[];
             newresult = result.map((x)=>{
              x.image = path +x.image;
@@ -88,19 +88,21 @@ class SongsController {
     static createSongs =  async (req, res) =>{
         //console.log(req.files)
         try {
-            console.log(req.files)
-            console.log(req.body)
+            //console.log(req.files)
+            //console.log(req.body)
             var data = JSON.parse(req.body.data)
             
                 const doc = new SongsModel({
                     image : req.files.files[0].filename,
-                    song : req.files.audio[0].filename,
+                    song : req.files.files[1].filename,
                     track : data.track,
                     duration: data.duration,
                     artist : data.artist,
-                    category: data.category
+                    category: data.category,
+                    playlist:data.playlist
                 });
                 const result = await doc.save();
+                //console.log(result)
                 res.status(201).send(result);
         } catch (error) {
             console.log(error);
@@ -146,10 +148,11 @@ class SongsController {
             await SongsModel.findByIdAndUpdate(id, {
                 image : new_img,
                 song : new_audio,
-                track : req.body.track,
-                duration: req.body.duration,
-                artist : req.body.artist,
-                category: req.body.category
+                track : data.track,
+                duration: data.duration,
+                artist : data.artist,
+                category: data.category,
+                playlist: data.playlist
             });
             res.send({success:true});    
         }catch (error) {
