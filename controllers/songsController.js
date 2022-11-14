@@ -90,14 +90,15 @@ class SongsController {
         try {
             console.log(req.files)
             console.log(req.body)
+            var data = JSON.parse(req.body.data)
             
                 const doc = new SongsModel({
                     image : req.files.files[0].filename,
                     song : req.files.audio[0].filename,
-                    track : req.body.track,
-                    duration: req.body.duration,
-                    artist : req.body.artist,
-                    category: req.body.category
+                    track : data.track,
+                    duration: data.duration,
+                    artist : data.artist,
+                    category: data.category
                 });
                 const result = await doc.save();
                 res.status(201).send(result);
@@ -111,6 +112,11 @@ class SongsController {
             let id = req.params.id;
             let new_img = "";
             let new_audio ="";
+            var data = JSON.parse(req.body.data)
+            var img = data.image
+            var arr = img.split("songImg");
+            var song = data.audio
+            var arr2 = song.split("songimg");
 
             if (req.files.files){
                 //console.log(req.files.files)
@@ -118,7 +124,7 @@ class SongsController {
                 new_img = req.files.files[0].filename;
                 
                 try{
-                    fs.unlinkSync("./public/songImg/"+ req.body.old_image)
+                    fs.unlinkSync("./public/songImg/"+ arr[1])
                 } catch (err){
                     console.log(err)
                 }
@@ -129,7 +135,7 @@ class SongsController {
                 //console.log(req.files.audio)
                 new_audio = req.files.audio[0].filename;
                 try{
-                    fs.unlinkSync("./public/songImg/"+ req.body.old_audio)
+                    fs.unlinkSync("./public/songImg/"+ arr2[1])
                 } catch (err){
                     console.log(err)
                 }

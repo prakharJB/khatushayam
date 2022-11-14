@@ -1,5 +1,6 @@
 import PlaylistModel from '../models/playlist.js';
 import SongsModal from "../models/songs.js";
+import fs from "fs";
 const path = "http://localhost:3100/playlistImg/"
 const songpath = "http://localhost:3100/songImg/"
 
@@ -49,8 +50,9 @@ class PlaylistController {
 
     static createPlaylist =  async (req, res) =>{
         try {
-
-            var data = JSON.parse(req.body.data)
+                //console.log(req.file)
+                //console.log(req.body)
+                var data = JSON.parse(req.body.data)
                 const doc = new PlaylistModel({
                     image : req.file.filename,
                     title : data.title,
