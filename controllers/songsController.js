@@ -134,7 +134,7 @@ class SongsController {
                     console.log(err)
                 }
             } else {
-                new_img = req.body.old_image;
+                new_img = req.body.image;
             }
             if (req.files.audio){
                 console.log(req.files.audio)
@@ -145,7 +145,7 @@ class SongsController {
                     console.log(err)
                 }
             }else {
-                new_audio = req.body.old_audio;
+                new_audio = req.body.audio;
             }
          
             await SongsModel.findByIdAndUpdate(id, {

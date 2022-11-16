@@ -36,8 +36,8 @@ class NewReleasesController {
     static createNewReleasesSongs =  async (req, res) =>{
         //console.log(req.files)
         try {
-            //console.log(req.body)
-            //console.log(req.files)
+            console.log(req.body)
+            console.log(req.files)
 
             var data = JSON.parse(req.body.data)
             
@@ -80,7 +80,7 @@ class NewReleasesController {
                     console.log(err)
                 }
             } else {
-                new_img = req.body.old_image;
+                new_img = req.body.image;
             }
             if (req.files.audio){
                 console.log(req.files.audio)
@@ -91,7 +91,7 @@ class NewReleasesController {
                     console.log(err)
                 }
             }else {
-                new_audio = req.body.old_audio;
+                new_audio = req.body.audio;
             }
          
             await NewReleasesModel.findByIdAndUpdate(id, {
