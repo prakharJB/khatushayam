@@ -8,7 +8,7 @@ class SongsController {
 
     static getAllSongs = async (req,res) => {
         try {
-            const result = await SongsModel.find().sort({track : -1});
+            const result = await SongsModel.find();
             var newresult =[];
             newresult = result.map((x)=>{
              x.image = path + x.image;
@@ -23,7 +23,7 @@ class SongsController {
 
     static getTrendingSongs = async (req,res) => {
         try {
-            const result = await SongsModel.find().sort({track : -1}).limit(15);
+            const result = await SongsModel.find().limit(15);
             var newresult =[];
             newresult = result.map((x)=>{
              x.image = path +x.image;
@@ -88,8 +88,9 @@ class SongsController {
     static createSongs =  async (req, res) =>{
         //console.log(req.files)
         try {
-            //console.log(req.files)
             //console.log(req.body)
+            //console.log(req.files)
+
             var data = JSON.parse(req.body.data)
             
                 const doc = new SongsModel({
@@ -102,7 +103,7 @@ class SongsController {
                     playlist:data.playlist
                 });
                 const result = await doc.save();
-                //console.log(result)
+                console.log(result)
                 res.status(201).send(result);
         } catch (error) {
             console.log(error);
@@ -111,17 +112,19 @@ class SongsController {
 
     static updateSongsById = async (req, res)=>{
         try{
+            console.log(req.body)
+            console.log(req.files)
             let id = req.params.id;
             let new_img = "";
             let new_audio ="";
             var data = JSON.parse(req.body.data)
             var img = data.image
             var arr = img.split("songImg");
-            var song = data.audio
-            var arr2 = song.split("songimg");
+            var song = data.song
+            var arr2 = song.split("songImg");
 
             if (req.files.files){
-                //console.log(req.files.files)
+                console.log(req.files.files)
                 
                 new_img = req.files.files[0].filename;
                 
@@ -134,7 +137,7 @@ class SongsController {
                 new_img = req.body.old_image;
             }
             if (req.files.audio){
-                //console.log(req.files.audio)
+                console.log(req.files.audio)
                 new_audio = req.files.audio[0].filename;
                 try{
                     fs.unlinkSync("./public/songImg/"+ arr2[1])
@@ -154,7 +157,7 @@ class SongsController {
                 category: data.category,
                 playlist: data.playlist
             });
-            res.send({success:true});    
+            res.send({success:true});
         }catch (error) {
             console.log(error);
         }

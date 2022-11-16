@@ -50,7 +50,7 @@ class CategoryController {
       const result = await SongsModel.find({ category: cate });
       var newresult = [];
       newresult = result.map((x) => {
-        x.image = songpath + x.image;
+        x.image = songpath + x.image;        
         x.song = songpath + x.song;
         return x;
       });

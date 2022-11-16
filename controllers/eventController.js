@@ -22,6 +22,7 @@ class EventController {
 
     static createEvent =  async (req, res) =>{
         try {
+           
             const doc = new EventModal({
                 date:req.body.date,
                 place: req.body.place,
@@ -37,6 +38,7 @@ class EventController {
    
     static updateEventById = async (req, res) => {
         try{
+          
             await EventModal.findByIdAndUpdate(req.params.id, {
                 date:req.body.date,
                 place: req.body.place,
