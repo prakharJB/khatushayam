@@ -65,33 +65,24 @@ class NewReleasesController {
             let new_audio ="";
             var data = JSON.parse(req.body.data)
             var img = data.image
-            var arr = img.split("NewReleasesSongImg");
+            var arr = img.split("NewReleasesSongImg/");
             var song = data.song
-            var arr2 = song.split("NewReleasesSongImg");
+            var arr2 = song.split("NewReleasesSongImg/");
 
             if (req.files.files){
-                console.log(req.files.files)
+                //console.log(req.files.files)
                 
                 new_img = req.files.files[0].filename;
-                
+                new_audio = req.files.files[1].filename;
                 try{
                     fs.unlinkSync("./public/NewReleasesSongImg/"+ arr[1])
-                } catch (err){
-                    console.log(err)
-                }
-            } else {
-                new_img = req.body.image;
-            }
-            if (req.files.audio){
-                console.log(req.files.audio)
-                new_audio = req.files.audio[0].filename;
-                try{
                     fs.unlinkSync("./public/NewReleasesSongImg/"+ arr2[1])
                 } catch (err){
                     console.log(err)
                 }
-            }else {
-                new_audio = req.body.audio;
+            } else {
+                new_img = arr[1];
+                new_audio = arr2[1];
             }
          
             await NewReleasesModel.findByIdAndUpdate(id, {
