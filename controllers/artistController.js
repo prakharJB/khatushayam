@@ -84,7 +84,7 @@ class ArtistController {
             let new_img = "";
             var data = JSON.parse(req.body.data)
             var img = data.image
-            var arr = img.split("artistImg");
+            var arr = img.split("artistImg/");
 
             if (req.file){
                 new_img = req.file.filename;

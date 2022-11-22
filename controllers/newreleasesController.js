@@ -36,8 +36,8 @@ class NewReleasesController {
     static createNewReleasesSongs =  async (req, res) =>{
         //console.log(req.files)
         try {
-            console.log(req.body)
-            console.log(req.files)
+            //console.log(req.body)
+           // console.log(req.files)
 
             var data = JSON.parse(req.body.data)
             
@@ -49,7 +49,7 @@ class NewReleasesController {
                     artist : data.artist
                 });
                 const result = await doc.save();
-                console.log(result)
+                //console.log(result)
                 res.status(201).send(result);
         } catch (error) {
             console.log(error);
@@ -58,8 +58,8 @@ class NewReleasesController {
 
     static updateNewReleasesSongsById = async (req, res)=>{
         try{
-            console.log(req.body)
-            console.log(req.files)
+            //console.log(req.body)
+            //console.log(req.files)
             let id = req.params.id;
             let new_img = "";
             let new_audio ="";

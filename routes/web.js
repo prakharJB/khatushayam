@@ -32,9 +32,9 @@ router.delete("/songs/:id", SongsController.deleteSongsById);
 //Trending API
 router.get("/trending", TrendingController.getTrendingSongs);
 router.get("/trending/:id", TrendingController.getSingleTrendingSongs);
-router.post("/trending",TrendingSongImg, TrendingController.getSingleTrendingSongs);
-router.put("/trending/:id",TrendingSongImg, TrendingController.getSingleTrendingSongs);
-router.delete("/trending/:id", TrendingController.getSingleTrendingSongs);
+router.post("/trending",TrendingSongImg, TrendingController.createTrendingSongs);
+router.put("/trending/:id",TrendingSongImg, TrendingController.updateTrendingSongsById);
+router.delete("/trending/:id", TrendingController.deleteTrendingSongsById);
 
 //Recommended API
 router.get("/recommended", RecommandedController.getRecommandedSongs);

@@ -36,8 +36,8 @@ class RecommandedController {
     static createRecommandedSongs =  async (req, res) =>{
         //console.log(req.files)
         try {
-            console.log(req.body)
-            console.log(req.files)
+            //console.log(req.body)
+            //console.log(req.files)
 
             var data = JSON.parse(req.body.data)
             
@@ -49,7 +49,7 @@ class RecommandedController {
                     artist : data.artist
                 });
                 const result = await doc.save();
-                console.log(result)
+                //console.log(result)
                 res.status(201).send(result);
         } catch (error) {
             console.log(error);
@@ -58,40 +58,31 @@ class RecommandedController {
 
     static updateRecommandedSongsById = async (req, res)=>{
         try{
-            console.log(req.body)
-            console.log(req.files)
+            //console.log(req.body)
+           // console.log(req.files)
             let id = req.params.id;
             let new_img = "";
             let new_audio ="";
             var data = JSON.parse(req.body.data)
             var img = data.image
-            var arr = img.split("RecommendedSongImg");
+            var arr = img.split("RecommendedSongImg/");
             var song = data.song
-            var arr2 = song.split("RecommendedSongImg");
+            var arr2 = song.split("RecommendedSongImg/");
 
             if (req.files.files){
-                console.log(req.files.files)
+                //console.log(req.files.files)
                 
                 new_img = req.files.files[0].filename;
-                
+                new_audio = req.files.files[1].filename;
                 try{
                     fs.unlinkSync("./public/RecommendedSongImg/"+ arr[1])
-                } catch (err){
-                    console.log(err)
-                }
-            } else {
-                new_img = req.body.image;
-            }
-            if (req.files.audio){
-                console.log(req.files.audio)
-                new_audio = req.files.audio[0].filename;
-                try{
                     fs.unlinkSync("./public/RecommendedSongImg/"+ arr2[1])
                 } catch (err){
                     console.log(err)
                 }
-            }else {
-                new_audio = req.body.audio;
+            } else {
+                new_img = arr[1];
+                new_audio = arr2[1];
             }
          
             await RecommendedModel.findByIdAndUpdate(id, {

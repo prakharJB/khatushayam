@@ -49,7 +49,7 @@ class TrendingController {
                     artist : data.artist
                 });
                 const result = await doc.save();
-                console.log(result)
+                //console.log(result)
                 res.status(201).send(result);
         } catch (error) {
             console.log(error);
@@ -58,8 +58,8 @@ class TrendingController {
 
     static updateTrendingSongsById = async (req, res)=>{
         try{
-            console.log(req.body)
-            console.log(req.files)
+           // console.log(req.body)
+           // console.log(req.files)
             let id = req.params.id;
             let new_img = "";
             let new_audio ="";
