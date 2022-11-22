@@ -69,19 +69,28 @@ class NewReleasesController {
             var song = data.song
             var arr2 = song.split("NewReleasesSongImg/");
 
-            if (req.files.files){
+            if (req.files.files[0]){
                 //console.log(req.files.files)
                 
                 new_img = req.files.files[0].filename;
-                new_audio = req.files.files[1].filename;
                 try{
                     fs.unlinkSync("./public/NewReleasesSongImg/"+ arr[1])
-                    fs.unlinkSync("./public/NewReleasesSongImg/"+ arr2[1])
                 } catch (err){
                     console.log(err)
                 }
             } else {
                 new_img = arr[1];
+            }
+
+            if(req.files.files[1]){
+                new_audio = req.files.files[1].filename;
+                try{
+                    fs.unlinkSync("./public/NewReleasesSongImg/"+ arr2[1])
+                } catch (err){
+                    console.log(err)
+                }
+
+            } else{
                 new_audio = arr2[1];
             }
          
